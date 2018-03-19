@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layout/default">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+
+<body>
+	<th:block layout:fragment="script">
+		<script type="text/javascript">
+            var formOriginalData;
+			$(function () {
+                $('#frm').validate({
+                    rules: {
+                        memId: { required: true, minlength:3, maxlength:20 },
+                        memPassword: { minlength:2, maxlength:20 },
+                        memEmail: { required :true, email:true }
+                    }
+                });
+                formOriginalData = $('#frm').serialize();
+			});
+
+            function check_form_changed() {
+                if ($('#frm').serialize() !== formOriginalData) {
+                    if (confirm('저장하지 않은 정보가 있습니다. 저장하지 않은 상태로 이동하시겠습니까?')) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                return true;
+            }
+		</script>
+	</th:block>
+	<div class="content-wrapper" layout:fragment="content">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1>
+				회원관리
+				<small>Optional description</small>
+			</h1>
+			<ol class="breadcrumb">
+				<li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
+				<li class="active">Here</li>
+			</ol>
+		</section>
+
+		<!-- Main content -->
+		<section class="content">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- Horizontal Form -->
+					<div class="box box-info">
+						<!-- form start -->
+						<form id="frm" name="frm" class="form-horizontal">
+							<div class="box-body">
+								<div class="form-group">
+									<label for="memId" class="col-sm-2 control-label">아이디</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="memId" name="memId" placeholder="아이디">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="memPassword" class="col-sm-2 control-label">비밀번호</label>
+									<div class="col-sm-10">
+										<input type="password" class="form-control" id="memPassword" name="memPassword" placeholder="비밀번호">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="memEmail" class="col-sm-2 control-label">이메일</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="memEmail" name="memEmail" placeholder="이메일">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="memName" class="col-sm-2 control-label">이름</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="memName" name="memName" placeholder="이름">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="memNickname" class="col-sm-2 control-label">닉네임</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="memNickname" name="memNickname" placeholder="닉네임">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<div class="checkbox">
+											<label>
+												<input type="checkbox"> Remember me
+											</label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /.box-body -->
+							<div class="box-footer">
+								<button type="button" class="btn btn-default" onclick="return check_form_changed();">Cancel</button>
+								<button type="button" class="btn btn-info pull-right">Sign in</button>
+							</div>
+							<!-- /.box-footer -->
+						</form>
+					</div>
+					<!-- /.box -->
+				</div>
+			</div>
+		</section>
+		<!-- /.content -->
+	</div>
+</body>
+</html>

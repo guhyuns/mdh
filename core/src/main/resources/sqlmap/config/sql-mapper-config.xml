@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+		<!--
+		<typeAlias alias="sampleVO" type="com.tomatoclass.manager.customer.service.SampleVO"/>
+		-->
+		<typeAlias alias="userVO" type="com.mdh.core.main.service.UserVO" />
+		<typeAlias alias="memberVO" type="com.mdh.core.member.service.MemberVO" />
+
+    </typeAliases>
+</configuration>

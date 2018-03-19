@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdh.core.member.service.impl.MemberMapper">
+
+	<resultMap id="memberVOMap" type="memberVO">
+		<result property="memId" column="MEM_ID"/>
+		<result property="memUserId" column="MEM_USERID"/>
+		<result property="memEmail" column="MEM_EMAIL"/>
+		<result property="memPassword" column="MEM_PASSWORD"/>
+		<result property="memUserName" column="MEM_USERNAME"/>
+		<result property="memNickname" column="MEM_NICKNAME"/>
+		<result property="memLevel" column="MEM_LEVEL"/>
+		<result property="memPoint" column="MEM_POINT"/>
+		<result property="memHomepage" column="MEM_HOMEPAGE"/>
+		<result property="memPhone" column="MEM_PHONE"/>
+		<result property="memBirthday" column="MEM_BIRTHDAY"/>
+		<result property="memSex" column="MEM_SEX"/>
+		<result property="memZipcode" column="MEM_ZIPCODE"/>
+		<result property="memAddress1" column="MEM_ADDRESS1"/>
+		<result property="memAddress2" column="MEM_ADDRESS2"/>
+		<result property="memAddress3" column="MEM_ADDRESS3"/>
+		<result property="memAddress4" column="MEM_ADDRESS4"/>
+		<result property="memReceiveEmail" column="MEM_RECEIVE_EMAIL"/>
+		<result property="memUseNote" column="MEM_USE_NOTE"/>
+		<result property="memReceiveSms" column="MEM_RECEIVE_SMS"/>
+		<result property="memOpenProfile" column="MEM_OPEN_PROFILE"/>
+		<result property="memDenied" column="MEM_DENIED"/>
+		<result property="memEmailCert" column="MEM_EMAIL_CERT"/>
+		<result property="memRegisterDatetime" column="MEM_REGISTER_DATETIME"/>
+		<result property="memRegisterIp" column="MEM_REGISTER_IP"/>
+		<result property="memLastLoginDatetime" column="MEM_LASTLOGIN_DATETIME"/>
+		<result property="memLastloginIp" column="MEM_LASTLOGIN_IP"/>
+		<result property="memIsAdmin" column="MEM_IS_ADMIN"/>
+		<result property="memProfileContent" column="MEM_PROFILE_CONTENT"/>
+		<result property="memAdminMemo" column="MEM_ADMINMEMO"/>
+		<result property="memFollowing" column="MEM_FOLLOWING"/>
+		<result property="memFollowed" column="MEM_FOLLOWED"/>
+		<result property="memIcon" column="MEM_ICON"/>
+		<result property="memPhoto" column="MEM_PHOTO"/>
+	</resultMap>
+
+	<select id="selectMemberAllList" resultMap="memberVOMap">
+		SELECT * FROM member
+	</select>
+
+	<insert id="insertMember" parameterType="memberVO">
+		INSERT INTO member (
+			MEM_ID
+			, MEM_USERID
+			, MEM_EMAIL
+			, MEM_PASSWORD
+			, MEM_USERNAME
+			, MEM_NICKNAME
+			, MEM_LEVEL
+			, MEM_POINT
+			, MEM_HOMEPAGE
+			, MEM_PHONE
+			, MEM_BIRTHDAY
+			, MEM_SEX
+			, MEM_ZIPCODE
+			, MEM_ADDRESS1
+			, MEM_ADDRESS2
+			, MEM_ADDRESS3
+			, MEM_ADDRESS4
+			, MEM_RECEIVE_EMAIL
+			, MEM_USE_NOTE
+			, MEM_RECEIVE_SMS
+			, MEM_OPEN_PROFILE
+			, MEM_DENIED
+			, MEM_EMAIL_CERT
+			, MEM_REGISTER_DATETIME
+			, MEM_REGISTER_IP
+			, MEM_LASTLOGIN_DATETIME
+			, MEM_LASTLOGIN_IP
+			, MEM_IS_ADMIN
+			, MEM_PROFILE_CONTENT
+			, MEM_ADMINMEMO
+			, MEM_FOLLOWING
+			, MEM_FOLLOWED
+			, MEM_ICON
+			, MEM_PHOTO)
+		VALUES (
+			#{memId}
+			, #{memUserId}
+			, #{memEmail}
+			, #{memPassword}
+			, #{memUserName}
+			, #{memNickname}
+			, #{memLevel}
+			, #{memPoint}
+			, #{memHomepage}
+			, #{memPhone}
+			, #{memBirthday}
+			, #{memSex}
+			, #{memZipcode}
+			, #{memAddress1}
+			, #{memAddress2}
+			, #{memAddress3}
+			, #{memAddress4}
+			, #{memReceiveEmail}
+			, #{memUseNote}
+			, #{memReceiveSms}
+			, #{memOpenProfile}
+			, #{memDenied}
+			, #{memEmailCert}
+			, NOW()
+			, #{memRegisterIp}
+			, NOW()
+			, #{memLastloginIp}
+			, #{memIsAdmin}
+			, #{memProfileContent}
+			, #{memAdminMemo}
+			, #{memFollowing}
+			, #{memFollowed}
+			, #{memIcon}
+			, #{memPhoto}
+		)
+	</insert>
+
+</mapper>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="/js/plugins/bootstrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/nanumgothic.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<link rel="stylesheet" href="/js/plugins/iCheck/all.css">
+	<link rel="stylesheet" href="/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="/css/skins/skin-blue.min.css">
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+	<script src="/js/plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<script src="/js/plugins/bootstrap/js/bootstrap.js"></script>
+	<script src="/js/app.min.js"></script>
+	<script src="/js/plugins/iCheck/icheck.min.js"></script>
+	<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+	<script src="/js/plugins/validate/jquery.validate.extension.js"></script>
+	<script src="/js/common.js"></script>
+
+	<!-- 각 페이지의 스크립트가 작성될 위치 -->
+	<th:block layout:fragment="script"></th:block>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper">
+		<!-- Main Header -->
+		<header class="main-header" th:replace="layout/fragments/header :: header">
+			header
+		</header>
+
+		<!-- Left side column. contains the logo and sidebar -->
+		<aside class="main-sidebar" th:replace="layout/fragments/left :: left">
+			left
+		</aside>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper" layout:fragment="content">
+			content
+		</div>
+		<!-- /.content-wrapper -->
+
+		<!-- Main Footer -->
+		<footer class="main-footer" th:replace="layout/fragments/footer :: footer">
+			footer
+		</footer>
+
+		<!-- Control Sidebar -->
+		<aside class="control-sidebar control-sidebar-dark" th:replace="layout/fragments/right :: right">
+			right
+		</aside>
+		<!-- /.control-sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+			 immediately after the control sidebar -->
+		<div class="control-sidebar-bg"></div>
+	</div>
+	<!-- ./wrapper -->
+
+</body>
+</html>

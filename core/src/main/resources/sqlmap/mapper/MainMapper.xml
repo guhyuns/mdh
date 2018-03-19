@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mdh.core.main.service.impl.MainMapper">
+
+	<resultMap id="userVOMap" type="userVO">
+		<result property="userId" column="USER_ID"/>
+		<result property="userPw" column="USER_PW"/>
+		<result property="emailAddr" column="EMAIL_ADDR"/>
+		<result property="zipAddr" column="ZIP_ADDR" />
+		<result property="zipAddrDtl" column="ZIP_ADDR_DTL" />
+		<result property="regDt" column="REG_DT" />
+		<result property="mdfyDt" column="MDFY_DT" />
+	</resultMap>
+
+	<select id="selectUserList" resultMap="userVOMap">
+		SELECT USER_ID, USER_PW, EMAIL_ADDR, ZIP_ADDR, ZIP_ADDR_DTL, REG_DT, MDFY_DT
+		FROM TB_USER
+	</select>
+
+</mapper>
