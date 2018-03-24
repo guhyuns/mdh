@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:int="http://www.springframework.org/schema/integration"
+	   xmlns:int-ftp="http://www.springframework.org/schema/integration/ftp"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/integration http://www.springframework.org/schema/integration/spring-integration.xsd
+	 	http://www.springframework.org/schema/integration/ftp http://www.springframework.org/schema/integration/ftp/spring-integration-ftp.xsd">
+
+	<bean id="ftpClientFactory" class="org.springframework.integration.ftp.session.DefaultFtpSessionFactory">
+		<property name="host" value=""/>
+		<property name="port" value=""/>
+		<property name="username" value=""/>
+		<property name="password" value=""/>
+	</bean>
+
+	<!--filename-pattern="*.txt"-->
+	<!--filter="ftpFilter"-->
+	<!--local-filter="acceptAllFileListFilter"-->
+	<!--delete-remote-files="false"-->
+	<int-ftp:inbound-channel-adapter
+			id="ftpInbound"
+			channel="ftpChannel"
+			session-factory="ftpClientFactory"
+			auto-create-local-directory="true"
+			preserve-timestamp="true"
+			filter="ftpFilter"
+
+			remote-directory="/"
+			local-directory="/ftpInbound">
+		<!--cron="0/10 * * * * *"-->
+		<int:poller fixed-rate="1000" />
+	</int-ftp:inbound-channel-adapter>
+
+	<!--<int:queue/>-->
+	<int:channel id="ftpChannel">
+		<int:interceptors>
+			<int:wire-tap channel="logger" />
+		</int:interceptors>
+	</int:channel>
+
+	<bean id="ftpFilter" class="com.mdh.core.FtpFilter"></bean>
+	<bean id="jobLauncher" class="com.mdh.core.TriggerJobLauncher"></bean>
+
+	<bean id="acceptAllFileListFilter" class="org.springframework.integration.file.filters.AcceptAllFileListFilter"/>
+	<int:service-activator
+			id="jobServiceActivator"
+			input-channel="ftpChannel"
+			ref="jobLauncher"
+			method="launch" />
+
+	<int:logging-channel-adapter
+			id="logger"
+			level="DEBUG"
+			log-full-message="true" />
+
+	<!--
+	<bean id="cachingSessionFactory" class="org.springframework.integration.file.remote.session.CachingSessionFactory">
+		<constructor-arg ref="ftpClientFactory"/>
+	</bean>
+
+	<int:channel id="ftpChannel"/>
+
+	<int-ftp:outbound-channel-adapter
+		id="ftpOutbound"
+		channel="ftpChannel"
+		remote-directory="/"
+		session-factory="ftpClientFactory">
+		<int-ftp:request-handler-advice-chain>
+			<int:retry-advice />
+		</int-ftp:request-handler-advice-chain>
+	</int-ftp:outbound-channel-adapter>
+	-->
+</beans>
